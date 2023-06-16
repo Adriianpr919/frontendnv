@@ -3,7 +3,6 @@ import ReactPaginate from 'react-paginate';
 import { faEye } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
-
 import 'flowbite';
 
 const ShopProducts = ({ list }) => {
@@ -52,13 +51,10 @@ const ShopProducts = ({ list }) => {
                                         NOMBRE.
                                       </th>
                                       <th scope="col" className="px-6 py-3" style={{ fontSize: "15px" }}>
-                                        MEN&#218; 1 CATEGOR&#205;A.
+                                        CATEGOR&#205;AS.
                                       </th>
                                       <th scope="col" className="px-6 py-3" style={{ fontSize: "15px" }}>
-                                        MEN&#218; 2 CATEGOR&#205;A.
-                                      </th>
-                                      <th scope="col" className="px-6 py-3" style={{ fontSize: "15px" }}>
-                                        MEN&#218; 3 CATEGOR&#205;A.
+                                        CANTIDAD.
                                       </th>
                                       <th scope="col" className="px-6 py-3" style={{ fontSize: "15px" }}>
                                         PRECIO.
@@ -90,18 +86,27 @@ const ShopProducts = ({ list }) => {
                                               </span>
                                             </td>
                                             <td className="px-6 py-4 font-semibold text-gray-900 dark:text-white">
-                                              <span className='badge badge-danger mb-2 text-black' style={{ fontSize: "15px" }}>
-                                                {product.categoryOptions}
-                                              </span>
+                                              <div className="pl-3">
+                                                <div className="text-base font-semibold">
+                                                  <span className='badge badge-danger mb-2 text-black' style={{ fontSize: "15px" }}>
+                                                    {product.categoryOptions}
+                                                  </span>
+                                                </div>
+                                                <div className="font-normal text-gray-500">
+                                                  <span className='badge badge-danger mb-2 text-black' style={{ fontSize: "15px" }}>
+                                                    {product.subcategoryOptions}
+                                                  </span>
+                                                </div>
+                                                <div className="font-normal text-gray-500">
+                                                  <span className='badge badge-danger mb-2 text-black' style={{ fontSize: "15px" }}>
+                                                    {product.tripletecategoryOptions}
+                                                  </span>
+                                                </div>
+                                              </div>
                                             </td>
                                             <td className="px-6 py-4 font-semibold text-gray-900 dark:text-white">
-                                              <span className='badge badge-danger mb-2 text-black' style={{ fontSize: "15px" }}>
-                                                {product.subcategoryOptions}
-                                              </span>
-                                            </td>
-                                            <td className="px-6 py-4 font-semibold text-gray-900 dark:text-white">
-                                              <span className='badge badge-danger mb-2 text-black' style={{ fontSize: "15px" }}>
-                                                {product.tripletecategoryOptions}
+                                              <span className='badge badge-info mb-2 text-black' style={{ fontSize: "15px" }}>
+                                                {product.countInStock > 0 ? 'EN STOCK.' : 'AGOTADO.'}
                                               </span>
                                             </td>
                                             <td className="px-6 py-4 font-semibold text-gray-900 dark:text-white">

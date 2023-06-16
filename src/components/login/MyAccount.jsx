@@ -1,10 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import AboutMe from '../views/AboutMe';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import MyOrders from '../orders/MyOrders';
-
 import 'flowbite';
 
 const MyAccount = () => {
@@ -29,14 +29,14 @@ const MyAccount = () => {
                             <nav className="page-breadcrumb-wrap">
                                 <ul className="nav justify-content-end">
                                     <li>
-                                        <a href="/" rel="noopener noreferrer">
+                                        <Link to="/" rel="noopener noreferrer">
                                             INICIO.
-                                        </a>
+                                        </Link>
                                     </li>
                                     <li>
-                                        <a href="#!" className="current" rel="noopener noreferrer">
+                                        <Link to="#!" className="current" rel="noopener noreferrer">
                                             <FontAwesomeIcon icon="fa-solid fa-gear" /> Ajustes. :*
-                                        </a>
+                                        </Link>
                                     </li>
                                 </ul>
                             </nav>

@@ -1,12 +1,14 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle, faRightToBracket, faPowerOff, faHeart, faCartShopping, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { toast } from 'react-toastify';
 import { Store } from '../../utils/Store';
+import ShellMenu from './NavbarMenu/ShellMenu';
 import Logo from './assets/img/logonv.png';
-
 import 'flowbite';
+import BannerHome from './NavbarMenu/BannerHome';
 
 const Header = () => {
 
@@ -28,13 +30,14 @@ const Header = () => {
 
     return (
         <>
+            <BannerHome />
+            <div className="b-example-divider" style={{ marginTop: '0%' }}></div>
             <header id="header-area">
                 <nav
                     className="bg-white border-gray-200 dark:bg-gray-900">
                     <div
                         className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl p-4">
-                        <Link
-                            to="/"
+                        <a
                             rel="noopener noreferrer"
                             className="flex items-center">
                             <img
@@ -42,14 +45,15 @@ const Header = () => {
                                 className="site_logo mr-3"
                                 width={200}
                                 height={200}
-                                alt="Nury Valenzuela&#174; Joyer&iacute;a &#124; Colombia."
-                                title="Nury Valenzuela&#174; Joyer&iacute;a &#124; Colombia."
+                                alt="Nury Valenzuela&#174; Joyer&iacute;a"
+                                title="Nury Valenzuela&#174; Joyer&iacute;a"
                                 loading="lazy"
                                 lang="es" />
                             <span
-                                className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+                                className="self-center text-12xl font-semibold whitespace-nowrap dark:text-white">
+                                <ShellMenu />
                             </span>
-                        </Link>
+                        </a>
                         <div
                             className="flex items-center" style={{ marginTop: '5%' }}>
                             {
@@ -82,8 +86,8 @@ const Header = () => {
                                     <>
                                         <div
                                             className="mini-cart-wrap">
-                                            <a
-                                                href="#!"
+                                            <Link
+                                                to="/"
                                                 rel="noopener noreferrer"
                                                 className="hover:underline block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">
                                                 <span
@@ -99,7 +103,7 @@ const Header = () => {
                                                         aria-hidden="true"
                                                         style={{ fontSize: "15px" }} />
                                                 </span>
-                                            </a>
+                                            </Link>
                                         </div>
                                         <div
                                             className="mini-cart-wrap">
@@ -174,7 +178,7 @@ const Header = () => {
                                         rel="noopener noreferrer"
                                         style={{ fontSize: "15px" }}
                                         className="text-gray-900 dark:text-white hover:underline" aria-current="page">
-                                        INICIO.
+                                        Inicio.
                                     </Link>
                                 </li>
                                 <li>
@@ -183,7 +187,7 @@ const Header = () => {
                                         rel="noopener noreferrer"
                                         style={{ fontSize: "15px" }}
                                         className="text-gray-900 dark:text-white hover:underline">
-                                        VER TIENDA.
+                                        Filtrar Por.
                                     </Link>
                                 </li>
                                 <li>
@@ -192,7 +196,7 @@ const Header = () => {
                                         rel="noopener noreferrer"
                                         style={{ fontSize: "15px" }}
                                         className="text-gray-900 dark:text-white hover:underline">
-                                        VER BLOGS.
+                                        Ver Blogs.
                                     </Link>
                                 </li>
                                 <li>
@@ -201,7 +205,7 @@ const Header = () => {
                                         rel="noopener noreferrer"
                                         style={{ fontSize: "15px" }}
                                         className="text-gray-900 dark:text-white hover:underline">
-                                        &Aacute;REA LEGAL. <FontAwesomeIcon icon={faChevronDown} />
+                                        &Aacute;rea Legal. <FontAwesomeIcon icon={faChevronDown} />
                                     </a>
                                 </li>
                             </ul>

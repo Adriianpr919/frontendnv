@@ -8,9 +8,9 @@
 
 ===========================================================================
 
-# ![image](https://github.com/Adriianpr919/frontendnv/assets/54821048/1619a1ad-0edb-476c-b1a7-11011c08541d)
+# ![image](https://github.com/Adriianpr919/frontendnv/assets/54821048/2667377c-9744-4df0-b9c1-da693c7452dd)
 
-# ![image](https://github.com/Adriianpr919/frontendnv/assets/54821048/9e624641-55d0-4063-bcc1-a362ec4366c3)
+# ![image](https://github.com/Adriianpr919/frontendnv/assets/54821048/c6b58847-8839-44cf-b2c8-268bcca4c23d)
 
 ===========================================================================
 
@@ -28,7 +28,7 @@ Luego de terminar de instalar las dependencias, puede arrancar el proyecto de un
 
 USANDO LA BASE DE DATOS MONGODB COMPASS. :\* -> ACTIVAR EL SERVIDOR CON LINK. :\* http://localhost:5000/api/seed <br />
 
-# ![MONGOBD](https://user-images.githubusercontent.com/54821048/235183867-915916d1-b0d9-4139-bff1-2540d583c086.png)
+# ![image](https://github.com/Adriianpr919/frontendnv/assets/54821048/9c592f93-ec45-4dd7-b5bf-68ff61129f3c)
 
 CONOCIDO A "CRUD" - POSTMAN. <br />
 
@@ -46,17 +46,14 @@ http://localhost:5000/api/users/\_id <br />
 
 `(BACK-END) SEGURIDAD DEL SISTEMA PROTEGIDAS. :*` <br />
 
-`1. ACTIVO. :* SOLO Administrador. -> (PRIVADAS). -> SISTEMA DE CONTROL DE INVENTARIOS.` <br />
-`2. DESACTIVO. :* SOLO Cliente. -> (PÚBLICO). -> HACER COMPRAS.` <br />
+`1. Administrador. -> (PRIVADAS). -> SISTEMA DE CONTROL DE INVENTARIOS.` <br />
+`2. Cliente. -> (PÚBLICO). -> HACER COMPRAS.` <br />
 
 Clientes: -> Público -> (HACER COMPRAS). <br />
-nombres: "bebito", <br />
-apellidos: "perez", <br />
+fullname: "bebito perez", <br />
 username: "bebitoperez123", <br />
 email: "bebitoperez123@gmail.com", <br />
-rol: "Cliente", <br />
-password: ("bebitoperez123"), <br />
-isAdmin: DESACTIVO <br />
+password: ("bebitoperez123") <br />
 
 ### Cuando haya arrancado asegurese que indique la url y el puerto.
 

@@ -1,8 +1,9 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Users from './assetsUsers/img/customers/user.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
+import Logo from '../assets/img/logonv.jpg';
 import 'flowbite';
 
 const AboutMe = () => {
@@ -30,14 +31,14 @@ const AboutMe = () => {
                             <nav className="page-breadcrumb-wrap">
                                 <ul className="nav justify-content-end">
                                     <li>
-                                        <a href="/" rel="noopener noreferrer">
+                                        <Link to="/" rel="noopener noreferrer">
                                             INICIO.
-                                        </a>
+                                        </Link>
                                     </li>
                                     <li>
-                                        <a href="#!" className="current" rel="noopener noreferrer">
+                                        <Link to="#!" className="current" rel="noopener noreferrer">
                                             <FontAwesomeIcon icon="fa-solid fa-user" /> MI PERFIL. :*
-                                        </a>
+                                        </Link>
                                     </li>
                                 </ul>
                             </nav>
@@ -57,12 +58,12 @@ const AboutMe = () => {
                                 <div className="row">
                                     <div className="col-lg-3 col-md-4">
                                         <div className="myaccount-tab-menu nav" role="tablist">
-                                            <a href="#dashboad" className="active" data-bs-toggle="tab" rel="noopener noreferrer">
+                                            <Link to="#dashboad" className="active" data-bs-toggle="tab" rel="noopener noreferrer">
                                                 <i className="fa fa-dashboard" /> INICIO. :*
-                                            </a>
-                                            <a href="#address-edit" data-bs-toggle="tab" rel="noopener noreferrer">
+                                            </Link>
+                                            <Link to="#address-edit" data-bs-toggle="tab" rel="noopener noreferrer">
                                                 <FontAwesomeIcon icon="fa-solid fa-user" /> MI PERFIL. :*
-                                            </a>
+                                            </Link>
                                         </div>
                                     </div>
                                     {/* My Account Tab Menu End */}
@@ -77,19 +78,25 @@ const AboutMe = () => {
                                                     </h3>
                                                     <div className="welcome">
                                                         <p style={{ fontWeight: "bold", fontSize: "15px" }}>
-                                                            <div id="intro-example" className="p-5 text-center bg-image" style={{ backgroundImage: 'url("https://images.pexels.com/photos/2942855/pexels-photo-2942855.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2")' }}>
-                                                                <div className="mask" style={{ backgroundColor: '#bdc3c787' }}>
-                                                                    <div className="d-flex justify-content-center align-items-center h-100">
-                                                                        <div className="text-white">
-                                                                            <h1 className="mb-3">
-                                                                                <span className="special" style={{ textAlign: "center", color: "white", borderRadius: "20px 20px", padding: "2px 4px", backgroundColor: 'rgb(0 0 0 / 12%)' }}>
-                                                                                    Nury Valenzuela&#174;
-                                                                                </span>Joyer&iacute;a &#124; Colombia.
-                                                                            </h1>
-                                                                        </div>
+                                                            <section className="bg-white dark:bg-gray-900">
+                                                                <div className="grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
+                                                                    <div className="mr-auto place-self-center lg:col-span-7">
+                                                                        <h1 className="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl dark:text-white">
+                                                                            <span className="special" style={{ textAlign: "center", color: "black", borderRadius: "20px 20px", padding: "2px 4px", backgroundColor: 'rgb(0 0 0 / 12%)' }}>
+                                                                                Nury Valenzuela&#174;
+                                                                            </span><br /><span style={{ textAlign: "center", color: "black", borderRadius: "20px 20px", padding: "2px 4px", backgroundColor: 'rgb(0 0 0 / 12%)' }}>
+                                                                                Joyer&iacute;a
+                                                                            </span>
+                                                                        </h1>
+                                                                    </div>
+                                                                    <div className="lg:mt-0 lg:col-span-5 lg:flex">
+                                                                        <img
+                                                                            src={Logo}
+                                                                            alt="Nury Valenzuela&#174; Joyer&iacute;a"
+                                                                            title="Nury Valenzuela&#174; Joyer&iacute;a" />
                                                                     </div>
                                                                 </div>
-                                                            </div>
+                                                            </section>
                                                         </p>
                                                     </div>
                                                 </div>
@@ -124,7 +131,7 @@ const AboutMe = () => {
                                                                                 </h3>
                                                                                 <span className="text-gray-500 dark:text-gray-400">
                                                                                     <span className="badge rounded-pill text-bg-primary" style={{ fontSize: "15px" }}>
-                                                                                        MI NOMBRE COMPLETO. :* {userInfo.nombres} {userInfo.apellidos}
+                                                                                        MI NOMBRE COMPLETO. :* {userInfo.fullname}
                                                                                     </span>
                                                                                 </span>
                                                                             </div>

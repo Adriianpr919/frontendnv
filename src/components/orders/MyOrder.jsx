@@ -3,9 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
-import { api } from '../../api/order/orderApi';
-
+import { orderApi } from '../../api/order/orderApi';
 import 'flowbite';
 
 const MyOrder = () => {
@@ -22,7 +20,7 @@ const MyOrder = () => {
         const fetchData = async () => {
             try {
 
-                const { data } = await api.get(`/api/orders/find/${id}`);
+                const { data } = await orderApi.get(`/find/${id}`);
                 console.log(data);
                 setOrder(data);
 
@@ -59,16 +57,16 @@ const MyOrder = () => {
                             <nav className="page-breadcrumb-wrap">
                                 <ul className="nav justify-content-end">
                                     <li>
-                                        <a href="/account" rel="noopener noreferrer">
-                                            <span className='fas fa-arrow-circle-left'></span> Regresa.
-                                        </a>
+                                        <Link to="/account" rel="noopener noreferrer">
+                                            <span className='fas fa-arrow-circle-left'></span> Regresa Pedidos.
+                                        </Link>
                                     </li>
                                     <li>
-                                        <a href="#!" className="current" rel="noopener noreferrer">
+                                        <Link to="#!" className="current" rel="noopener noreferrer">
                                             <strong>
                                                 # REFERENCIA. :* {id}
                                             </strong>
-                                        </a>
+                                        </Link>
                                     </li>
                                 </ul>
                             </nav>
@@ -114,6 +112,11 @@ const MyOrder = () => {
                                             </th>
                                             <th className="pro-thumbnail">
                                                 <span style={{ color: "black", fontSize: "15px" }} className="badge badge-secondary mb-2">
+                                                    COLOR DE PIEDRAS. :*
+                                                </span>
+                                            </th>
+                                            <th className="pro-thumbnail">
+                                                <span style={{ color: "black", fontSize: "15px" }} className="badge badge-secondary mb-2">
                                                     PRECIO. :*
                                                 </span>
                                             </th>
@@ -139,7 +142,8 @@ const MyOrder = () => {
                                                     </td>
                                                     <td className="pro-thumbnail">
                                                         <span className='badge badge-danger mb-2 text-black' style={{ fontSize: "15px" }}>
-                                                            CANTIDAD. :* {item.quantity}
+                                                            {item.quantity} <br />
+                                                            {item.quantity > 0 ? 'EN STOCK.' : 'AGOTADO.'}
                                                         </span>
                                                     </td>
                                                     <td className="pro-thumbnail">
@@ -149,7 +153,12 @@ const MyOrder = () => {
                                                     </td>
                                                     <td className="pro-thumbnail">
                                                         <span className="badge badge-info mb-2 text-black price" style={{ fontSize: "15px" }}>
-                                                            {item.color}
+                                                            {item.colorgold}
+                                                        </span>
+                                                    </td>
+                                                    <td className="pro-thumbnail">
+                                                        <span className="badge badge-info mb-2 text-black price" style={{ fontSize: "15px" }}>
+                                                            {item.colorstone}
                                                         </span>
                                                     </td>
                                                     <td className="pro-thumbnail">
@@ -186,7 +195,12 @@ const MyOrder = () => {
                                         <tr>
                                             <th className="pro-thumbnail">
                                                 <span style={{ color: "black", fontSize: "15px" }} className="badge badge-secondary mb-2">
-                                                    Nombre. :*
+                                                    Nombre Completo. :*
+                                                </span>
+                                            </th>
+                                            <th className="pro-thumbnail">
+                                                <span style={{ color: "black", fontSize: "15px" }} className="badge badge-secondary mb-2">
+                                                    Documento. :*
                                                 </span>
                                             </th>
                                             <th className="pro-thumbnail">
@@ -201,7 +215,7 @@ const MyOrder = () => {
                                             </th>
                                             <th className="pro-thumbnail">
                                                 <span style={{ color: "black", fontSize: "15px" }} className="badge badge-secondary mb-2">
-                                                    Tel&#233;fono. :*
+                                                    &#35;  Tel&#233;fono Y Celular. :*
                                                 </span>
                                             </th>
                                             <th className="pro-thumbnail">
@@ -211,7 +225,12 @@ const MyOrder = () => {
                                             </th>
                                             <th className="pro-thumbnail">
                                                 <span style={{ color: "black", fontSize: "15px" }} className="badge badge-secondary mb-2">
-                                                    Comentarios. :*
+                                                    Departamento. :*
+                                                </span>
+                                            </th>
+                                            <th className="pro-thumbnail">
+                                                <span style={{ color: "black", fontSize: "15px" }} className="badge badge-secondary mb-2">
+                                                    Ciudad. :*
                                                 </span>
                                             </th>
                                             <th className="pro-thumbnail">
@@ -240,6 +259,11 @@ const MyOrder = () => {
                                             </td>
                                             <td className="pro-thumbnail">
                                                 <span style={{ color: "black", fontSize: "15px" }} className="badge badge-secondary mb-2">
+                                                    {order.document}
+                                                </span>
+                                            </td>
+                                            <td className="pro-thumbnail">
+                                                <span style={{ color: "black", fontSize: "15px" }} className="badge badge-secondary mb-2">
                                                     {order.email}
                                                 </span>
                                             </td>
@@ -260,7 +284,12 @@ const MyOrder = () => {
                                             </td>
                                             <td className="pro-thumbnail">
                                                 <span style={{ color: "black", fontSize: "15px" }} className="badge badge-secondary mb-2">
-                                                    {order.comment}
+                                                    {order.departments}
+                                                </span>
+                                            </td>
+                                            <td className="pro-thumbnail">
+                                                <span style={{ color: "black", fontSize: "15px" }} className="badge badge-secondary mb-2">
+                                                    {order.city}
                                                 </span>
                                             </td>
                                             <td className="pro-thumbnail">

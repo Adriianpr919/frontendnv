@@ -1,14 +1,13 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 //import axios from 'axios';
 import React, { useState, useContext, useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { Store } from '../../utils/Store';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBagShopping } from '@fortawesome/free-solid-svg-icons';
-
 import 'flowbite';
-import { api } from '../../api/product/productApi';
+import { productApi } from '../../api/product/productApi';
 
 const ProductDetails = () => {
 
@@ -21,7 +20,8 @@ const ProductDetails = () => {
 
     const [product, setProduct] = useState([]);
     const [size, setSize] = useState('');
-    const [color, setColor] = useState('');
+    const [colorgold, setColorgold] = useState('');
+    const [colorstone, setColorstone] = useState('');
 
     const location = useLocation();
 
@@ -30,7 +30,7 @@ const ProductDetails = () => {
     useEffect(() => {
 
         const fetchData = async () => {
-            const resultProduct = await api.get(`/api/products/find/${id}`);
+            const resultProduct = await productApi.get(`/find/${id}`);
             setProduct(resultProduct.data);
         }
 
@@ -45,7 +45,7 @@ const ProductDetails = () => {
 
         ctxDispatch({
             type: 'ADD_TO_CART',
-            payload: { ...product, quantity, size, color },
+            payload: { ...product, quantity, size, colorgold, colorstone },
         });
 
         //this put if you will or not
@@ -101,14 +101,14 @@ const ProductDetails = () => {
                             <nav className="page-breadcrumb-wrap">
                                 <ul className="nav justify-content-end">
                                     <li>
-                                        <a href="/" rel="noopener noreferrer">
+                                        <Link to="/" rel="noopener noreferrer">
                                             INICIO.
-                                        </a>
+                                        </Link>
                                     </li>
                                     <li>
-                                        <a href="/shop" className="current" rel="noopener noreferrer">
+                                        <Link to="/shop" className="current" rel="noopener noreferrer">
                                             <FontAwesomeIcon icon={faBagShopping} />  PRODUCTO DETALLE.
-                                        </a>
+                                        </Link>
                                     </li>
                                 </ul>
                             </nav>
@@ -248,10 +248,20 @@ const ProductDetails = () => {
                                                 </h1>
                                                 <div className="pd-sizeDiv">
                                                     {
-                                                        product.sizes?.map((size, index) => (
+                                                        product.sizesOptions?.map((size, index) => (
                                                             <>
-                                                                <input type="radio" onChange={(e) => setSize(e.target.value)} id={size.value} name="size" value={size.value} key={index} required />
-                                                                <label htmlFor={size.value}>{size.value}</label>
+                                                                <div>
+                                                                    <ul className="w-48 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                                                                        <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+                                                                            <div className="flex items-center pl-3">
+                                                                                <input type="radio" onChange={(e) => setSize(e.target.value)} id={size.value} name={size.value} value={size.value} key={index} required defaultValue className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
+                                                                                <label htmlFor={size.value} className="w-full py-3 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300" style={{ fontSize: "15px" }}>
+                                                                                    {size.value}
+                                                                                </label>
+                                                                            </div>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
                                                             </>
                                                         ))
                                                     }
@@ -272,10 +282,54 @@ const ProductDetails = () => {
                                                 </h1>
                                                 <div className="pd-sizeDiv">
                                                     {
-                                                        product.colors?.map((color, index) => (
+                                                        product.colorsgoldsOptions?.map((colorgold, index) => (
                                                             <>
-                                                                <input type="radio" onChange={(e) => setColor(e.target.value)} id={color.value} name="color" value={color.value} key={index} required />
-                                                                <label htmlFor={color.value}>{color.value}</label>
+                                                                <div>
+                                                                    <ul className="w-48 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                                                                        <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+                                                                            <div className="flex items-center pl-3">
+                                                                                <input type="radio" onChange={(e) => setColorgold(e.target.value)} id={colorgold.value} name={colorgold.value} value={colorgold.value} key={index} required defaultValue className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
+                                                                                <label htmlFor={colorgold.value} className="w-full py-3 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300" style={{ fontSize: "15px" }}>
+                                                                                    {colorgold.value}
+                                                                                </label>
+                                                                            </div>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </>
+                                                        ))
+                                                    }
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </p>
+                            </div>
+                            <hr className="my-2" />
+                            <div>
+                                <p className="mb-4 text-gray-500">
+                                    <div className="pd-group">
+                                        <div className="pd-otherAction">
+                                            <div className="pd-color" style={{ textAlign: "justify" }}>
+                                                <h1 className="font-semibold text-3xl mb-3">
+                                                    Color De Piedras 🖌️. :*
+                                                </h1>
+                                                <div className="pd-sizeDiv">
+                                                    {
+                                                        product.colorsstonesOptions?.map((colorstone, index) => (
+                                                            <>
+                                                                <div>
+                                                                    <ul className="w-48 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                                                                        <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+                                                                            <div className="flex items-center pl-3">
+                                                                                <input type="radio" onChange={(e) => setColorstone(e.target.value)} id={colorstone.value} name={colorstone.value} value={colorstone.value} key={index} required defaultValue className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
+                                                                                <label htmlFor={colorstone.value} className="w-full py-3 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300" style={{ fontSize: "15px" }}>
+                                                                                    {colorstone.value}
+                                                                                </label>
+                                                                            </div>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
                                                             </>
                                                         ))
                                                     }

@@ -4,20 +4,16 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
 import 'flowbite';
-import { api } from '../../api/login/userApi';
+import { userApi } from '../../api/login/userApi';
 
 const SignUp = () => {
 
     const navigate = useNavigate();
 
-    const [nombres, setNombres] = useState('');
-    const [apellidos, setApellidos] = useState('');
+    const [fullname, setFullname] = useState('');
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
-    const [rol, setRol] = useState('');
-    const [isAdmin, setIsAdmin] = useState('');
     const [password, setPassword] = useState('');
     const [rPassword, setRPassword] = useState('');
 
@@ -32,13 +28,10 @@ const SignUp = () => {
 
         try {
 
-            await api.post('/api/users//register', {
-                nombres,
-                apellidos,
+            await userApi.post('/register', {
+                fullname,
                 username,
                 email,
-                rol,
-                isAdmin,
                 password
             });
 
@@ -79,14 +72,14 @@ const SignUp = () => {
                             <nav className="page-breadcrumb-wrap">
                                 <ul className="nav justify-content-end">
                                     <li>
-                                        <a href="/" rel="noopener noreferrer">
+                                        <Link to="/" rel="noopener noreferrer">
                                             INICIO.
-                                        </a>
+                                        </Link>
                                     </li>
                                     <li>
-                                        <a href="#!" className="current" rel="noopener noreferrer">
+                                        <Link to="#!" className="current" rel="noopener noreferrer">
                                             <FontAwesomeIcon icon="fa-solid fa-gear" /> Ajustes. :*
-                                        </a>
+                                        </Link>
                                     </li>
                                 </ul>
                             </nav>
@@ -104,41 +97,22 @@ const SignUp = () => {
                                 Crear y Cuenta Nueva.
                             </h1>
                             <form className="space-y-12 md:space-y-12" onSubmit={registerHandler}>
-                                <div className='grid md:grid-cols-2 md:gap-6'>
-                                    <div className='relative z-0 w-full mb-3 group'>
-                                        <label
-                                            htmlFor="nombres"
-                                            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                                            style={{ fontSize: "15px" }}>
-                                            <i className="fa-solid fa-pen-to-square"></i> Tu Nombre. <span
-                                                className="required">:*</span>
-                                        </label>
-                                        <input
-                                            type="text"
-                                            onChange={(e) => setNombres(e.target.value)}
-                                            id='nombres'
-                                            name="nombres"
-                                            placeholder="Tu Nombre."
-                                            className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                            style={{ fontSize: "11px" }} required />
-                                    </div>
-                                    <div className='relative z-0 w-full mb-3 group'>
-                                        <label
-                                            htmlFor="apellidos"
-                                            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                                            style={{ fontSize: "15px" }}>
-                                            <i className="fa-solid fa-pen-to-square"></i> Tu Apellido. <span
-                                                className="required">:*</span>
-                                        </label>
-                                        <input
-                                            type="text"
-                                            onChange={(e) => setApellidos(e.target.value)}
-                                            id='apellidos'
-                                            name="apellidos"
-                                            placeholder="Tu Apellido."
-                                            className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                            style={{ fontSize: "11px" }} required />
-                                    </div>
+                                <div className='relative z-0 w-full mb-3 group'>
+                                    <label
+                                        htmlFor="fullname"
+                                        className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                                        style={{ fontSize: "15px" }}>
+                                        <i className="fa-solid fa-pen-to-square"></i> Tu Nombre Completo. <span
+                                            className="required">:*</span>
+                                    </label>
+                                    <input
+                                        type="text"
+                                        onChange={(e) => setFullname(e.target.value)}
+                                        id='fullname'
+                                        name="fullname"
+                                        placeholder="Tu Nombre Completo."
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        style={{ fontSize: "15px" }} required />
                                 </div>
                                 <div className='grid md:grid-cols-2 md:gap-6'>
                                     <div className='relative z-0 w-full mb-3 group'>
@@ -156,7 +130,7 @@ const SignUp = () => {
                                             name="username"
                                             placeholder="Tu Usuario."
                                             className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                            style={{ fontSize: "11px" }} required />
+                                            style={{ fontSize: "15px" }} required />
                                     </div>
                                     <div className='relative z-0 w-full mb-3 group'>
                                         <label
@@ -172,7 +146,7 @@ const SignUp = () => {
                                             name="email"
                                             placeholder="tucorreo@ejemplo.com"
                                             className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                            style={{ fontSize: "11px" }} required />
+                                            style={{ fontSize: "15px" }} required />
                                     </div>
                                 </div>
                                 <div className='grid md:grid-cols-2 md:gap-6'>
@@ -191,7 +165,7 @@ const SignUp = () => {
                                             name="password"
                                             placeholder="La Contraseña."
                                             className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                            style={{ fontSize: "11px" }} required />
+                                            style={{ fontSize: "15px" }} required />
                                     </div>
                                     <div className='relative z-0 w-full mb-3 group'>
                                         <label
@@ -208,63 +182,10 @@ const SignUp = () => {
                                             name="r_password"
                                             placeholder="La Contraseña Actual."
                                             className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                            style={{ fontSize: "11px" }} required />
-                                    </div>
-                                </div>
-                                <div className='grid md:grid-cols-2 md:gap-6'>
-                                    <div className='relative z-0 w-full mb-3 group'>
-                                        <label
-                                            htmlFor="rol"
-                                            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                                            style={{ fontSize: "15px" }}>
-                                            <i className="fa-solid fa-users"></i> Cargo. <span
-                                                className="required">:*</span> <span className="badge rounded-pill text-bg-secondary" style={{ fontSize: "11px" }}>
-                                                <code className='text-white'>(Administrador) y (Cliente).</code>
-                                            </span>
-                                        </label>
-                                        <hr className="my-20" />
-                                        <select
-                                            onChange={(e) => setRol(e.target.value)}
-                                            id='rol'
-                                            name="rol"
-                                            placeholder="Cargo. :*"
-                                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                            aria-label=".form-select-lg example"
-                                            style={{ fontSize: "11px" }} required>
-                                            <option value="" disabled selected style={{ fontSize: "11px" }}>--- Seleccionar ---</option>
-                                            <option value="Administrador" style={{ fontSize: "11px" }}>Administrador</option>
-                                            <option value="Cliente" style={{ fontSize: "11px" }}>Cliente</option>
-                                        </select>
-                                        <hr className="my-20" />
-                                    </div>
-                                    <div className='relative z-0 w-full mb-3 group'>
-                                        <label
-                                            htmlFor="isAdmin"
-                                            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                                            style={{ fontSize: "15px" }}>
-                                            <i className="fa-solid fa-users"></i> Estado. <span
-                                                className="required">:*</span> <span className="badge rounded-pill text-bg-secondary" style={{ fontSize: "11px" }}>
-                                                <code className='text-white'>(Activar - Administrador) y (DesActivar - Cliente).</code>
-                                            </span>
-                                        </label>
-                                        <hr className="my-20" />
-                                        <select
-                                            onChange={(e) => setIsAdmin(e.target.value)}
-                                            id='isAdmin'
-                                            name="isAdmin"
-                                            placeholder="Estado. :*"
-                                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                            aria-label=".form-select-lg example"
-                                            style={{ fontSize: "11px" }} required>
-                                            <option value="" disabled selected style={{ fontSize: "11px" }}>--- Seleccionar ---</option>
-                                            <option value="false" style={{ fontSize: "11px" }}>DesActivar</option>
-                                            <option value="true" style={{ fontSize: "11px" }}>Activar</option>
-                                        </select>
-                                        <hr className="my-20" />
+                                            style={{ fontSize: "15px" }} required />
                                     </div>
                                 </div>
                                 <button
-                                    type="submit"
                                     className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
                                     style={{ fontSize: "15px" }}>
                                     <i className="fas fa-user-plus"></i> Crear Cuenta.

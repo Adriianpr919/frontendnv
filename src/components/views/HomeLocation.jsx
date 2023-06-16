@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Iframe from 'react-iframe';
 
@@ -24,14 +25,14 @@ const HomeLocation = () => {
               <nav className="page-breadcrumb-wrap">
                 <ul className="nav justify-content-end">
                   <li>
-                    <a href="/" rel="noopener noreferrer">
+                    <Link to="/" rel="noopener noreferrer">
                       INICIO.
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a href="#!" className="current" rel="noopener noreferrer">
+                    <Link to="#!" className="current" rel="noopener noreferrer">
                       <FontAwesomeIcon icon="fa-solid fa-location-dot" /> CONTACTOS. :*
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </nav>
@@ -75,6 +76,18 @@ const HomeLocation = () => {
                                         <i className="fab fa-telegram"></i> nuryvalenzuelajoyeria@gmail.com
                                       </>
                                     </a>
+                                  </span>
+                                </p>
+                                <p>
+                                  <span className="rounded-icon">
+                                    <i className="fa fa-angle-double-right wv_circle" /> Mensaje. :* <Link
+                                      to="/message"
+                                      rel="noopener noreferrer"
+                                      className="text-muted">
+                                      <>
+                                        <i className="fa-solid fa-message"></i> Entrar El Mensaje.
+                                      </>
+                                    </Link>
                                   </span>
                                 </p>
                               </h3>

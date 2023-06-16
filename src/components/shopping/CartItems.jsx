@@ -6,7 +6,6 @@ import { Store } from '../../utils/Store';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBagShopping } from '@fortawesome/free-solid-svg-icons';
-
 import 'flowbite';
 
 const CartItems = () => {
@@ -60,19 +59,19 @@ const CartItems = () => {
                             <nav className="page-breadcrumb-wrap">
                                 <ul className="nav justify-content-end">
                                     <li>
-                                        <a href="/" rel="noopener noreferrer">
+                                        <Link to="/" rel="noopener noreferrer">
                                             INICIO.
-                                        </a>
+                                        </Link>
                                     </li>
                                     <li>
-                                        <a href="/shop" rel="noopener noreferrer">
+                                        <Link to="/shop" rel="noopener noreferrer">
                                             <FontAwesomeIcon icon={faBagShopping} />  PRODUCTOS.
-                                        </a>
+                                        </Link>
                                     </li>
                                     <li>
-                                        <a href="/cart" className="current" rel="noopener noreferrer">
+                                        <Link to="/cart" className="current" rel="noopener noreferrer">
                                             <i className="fas fa-shopping-cart" /> Carrito De Compras.
-                                        </a>
+                                        </Link>
                                     </li>
                                 </ul>
                             </nav>
@@ -93,12 +92,11 @@ const CartItems = () => {
                                         <tr>
                                             <th className="pro-thumbnail">IMAGEN. :*</th>
                                             <th className="pro-thumbnail">NOMBRE. :*</th>
-                                            <th className="pro-price">MEN&#218; 1 CATEGOR&#205;A. :*</th>
-                                            <th className="pro-quantity">MEN&#218; 2 CATEGOR&#205;A. :*</th>
-                                            <th className="pro-quantity">MEN&#218; 3 CATEGOR&#205;A. :*</th>
+                                            <th className="pro-price">CATEGOR&#205;AS. :*</th>
                                             <th className="pro-quantity">PRECIO. :*</th>
                                             <th className="pro-subtotal">TALLA. :*</th>
                                             <th className="pro-remove">COLOR DE ORO. :*</th>
+                                            <th className="pro-remove">COLOR DE PIEDRAS. :*</th>
                                             <th className="pro-thumbnail">CANTIDAD. :*</th>
                                             <th className="pro-thumbnail">ACCI&#211;N. :*</th>
                                         </tr>
@@ -135,19 +133,23 @@ const CartItems = () => {
                                                                     </span>
                                                                 </td>
                                                                 <td className="pro-title">
-                                                                    <span style={{ color: "black", fontSize: "15px" }} className="badge badge-secondary mb-2">
-                                                                        {item.categoryOptions}
-                                                                    </span>
-                                                                </td>
-                                                                <td className="pro-price">
-                                                                    <span style={{ color: "black", fontSize: "15px" }} className="badge badge-secondary mb-2">
-                                                                        {item.subcategoryOptions}
-                                                                    </span>
-                                                                </td>
-                                                                <td className="pro-price">
-                                                                    <span style={{ color: "black", fontSize: "15px" }} className="badge badge-secondary mb-2">
-                                                                        {item.tripletecategoryOptions}
-                                                                    </span>
+                                                                    <div class="pl-3">
+                                                                        <div class="text-base font-semibold">
+                                                                            <span style={{ color: "black", fontSize: "15px" }} className="badge badge-secondary mb-2">
+                                                                                {item.categoryOptions}
+                                                                            </span>
+                                                                        </div>
+                                                                        <div class="font-normal text-gray-500">
+                                                                            <span style={{ color: "black", fontSize: "15px" }} className="badge badge-secondary mb-2">
+                                                                                {item.subcategoryOptions}
+                                                                            </span>
+                                                                        </div>
+                                                                        <div class="font-normal text-gray-500">
+                                                                            <span style={{ color: "black", fontSize: "15px" }} className="badge badge-secondary mb-2">
+                                                                                {item.tripletecategoryOptions}
+                                                                            </span>
+                                                                        </div>
+                                                                    </div>
                                                                 </td>
                                                                 <td className="pro-subtotal">
                                                                     <span style={{ color: "green", fontSize: "15px" }} className="badge badge-success mb-2">
@@ -164,17 +166,22 @@ const CartItems = () => {
                                                                 </td>
                                                                 <td className="pro-remove">
                                                                     <span style={{ color: "black", fontSize: "15px" }} className="badge badge-secondary mb-2">
-                                                                        {item.color}
+                                                                        {item.colorgold}
+                                                                    </span>
+                                                                </td>
+                                                                <td className="pro-remove">
+                                                                    <span style={{ color: "black", fontSize: "15px" }} className="badge badge-secondary mb-2">
+                                                                        {item.colorstone}
                                                                     </span>
                                                                 </td>
                                                                 <td className="pro-thumbnail">
                                                                     <div className="flex flex-row h-10 w-full rounded-lg relative bg-transparent mt-1">
                                                                         <button
                                                                             onClick={() => updateCartHandler(item, item.quantity - 1)} disabled={item.quantity === 1}
-                                                                            data-action="decrement"
+                                                                            data-action="decrement" style={{ fontSize: "15px" }}
                                                                             className=" bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-l cursor-pointer outline-none"
                                                                         >
-                                                                            <span className="m-auto text-2xl font-thin">
+                                                                            <span className="m-auto text-2xl font-thin" style={{ fontSize: "15px" }}>
                                                                                 &#45;
                                                                             </span>
                                                                         </button>
@@ -183,10 +190,10 @@ const CartItems = () => {
                                                                         </span>
                                                                         <button
                                                                             onClick={() => updateCartHandler(item, item.quantity + 1)}
-                                                                            data-action="increment"
+                                                                            data-action="increment" style={{ fontSize: "15px" }}
                                                                             className="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-r cursor-pointer"
                                                                         >
-                                                                            <span className="m-auto text-2xl font-thin">
+                                                                            <span className="m-auto text-2xl font-thin" style={{ fontSize: "15px" }}>
                                                                                 &#43;
                                                                             </span>
                                                                         </button>
@@ -195,8 +202,8 @@ const CartItems = () => {
                                                                 <td className="pro-thumbnail">
                                                                     <button
                                                                         onClick={() => removeItemHandler(item)}
-                                                                        className="px-4 py-2 inline-block text-red-600 bg-white shadow-sm border border-gray-200 rounded-md hover:bg-gray-100 cursor-pointer">
-                                                                        <span style={{ color: "red", fontSize: "10px" }} alt='Eliminar.' title='Eliminar.' className='badge badge-danger mb-2'>
+                                                                        className="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
+                                                                        <span style={{ fontSize: "20px" }} alt='Eliminar.' title='Eliminar.'>
                                                                             <i className="fa-solid fa-trash"></i>
                                                                         </span>
                                                                     </button>
@@ -222,26 +229,26 @@ const CartItems = () => {
                             <article className="border border-gray-200 bg-white shadow-sm rounded mb-5 p-3 lg:p-5">
                                 <ul className="mb-5">
                                     <li className="flex justify-between text-gray-600  mb-1">
-                                        <span style={{ color: "green", fontSize: "10px" }} className="badge badge-success mb-2">
+                                        <span style={{ color: "green", fontSize: "15px" }} className="badge badge-success mb-2">
                                             SubTotal. :*
                                         </span>
-                                        <span style={{ color: "green", fontSize: "10px" }} className="badge badge-success mb-2">
+                                        <span style={{ color: "green", fontSize: "15px" }} className="badge badge-success mb-2">
                                             {(uint1.toLocaleString('es-CO', { style: 'currency', currency: 'COP' }))}
                                         </span>
                                     </li>
                                     <li className="flex justify-between text-gray-600  mb-1">
-                                        <span style={{ color: "green", fontSize: "10px" }} className="badge badge-success mb-2">
+                                        <span style={{ color: "green", fontSize: "15px" }} className="badge badge-success mb-2">
                                             Impuesto IVA De 19%. :*
                                         </span>
-                                        <span style={{ color: "green", fontSize: "10px" }} className="badge badge-success mb-2">
+                                        <span style={{ color: "green", fontSize: "15px" }} className="badge badge-success mb-2">
                                             {(uint2.toLocaleString('es-CO', { style: 'currency', currency: 'COP' }))}
                                         </span>
                                     </li>
                                     <li className="text-lg font-bold border-t flex justify-between mt-3 pt-3">
-                                        <span style={{ color: "green", fontSize: "10px" }} className="badge badge-success mb-2">
+                                        <span style={{ color: "green", fontSize: "15px" }} className="badge badge-success mb-2">
                                             Total. :*
                                         </span>
-                                        <span style={{ color: "green", fontSize: "10px" }} className="badge badge-success mb-2">
+                                        <span style={{ color: "green", fontSize: "15px" }} className="badge badge-success mb-2">
                                             {(uint3.toLocaleString('es-CO', { style: 'currency', currency: 'COP' }))}
                                         </span>
                                     </li>
@@ -249,16 +256,16 @@ const CartItems = () => {
                                 {cartItems.length > 0 && (
                                     <a
                                         rel="noopener noreferrer"
-                                        onClick={() => setOpen(true)}
+                                        onClick={() => setOpen(true)} style={{ fontSize: "15px" }}
                                         className="px-4 py-3 mb-2 inline-block text-lg w-full text-center font-medium text-white bg-green-600 border border-transparent rounded-md hover:bg-green-700 cursor-pointer">
-                                        <i className="fa-solid fa-credit-card"></i> Verificar.
+                                        <i className="fa-solid fa-credit-card"></i> Finalizar Compra.
                                     </a>)}
                                 <></>
                                 <Link
-                                    to="/shop"
+                                    to="/shop" rel="noopener noreferrer" style={{ fontSize: "15px" }}
                                     className="px-4 py-3 inline-block text-lg w-full text-center font-medium text-green-600 bg-white shadow-sm border border-gray-400 rounded-md hover:bg-gray-100"
                                 >
-                                    Volver A La Tienda.
+                                    Continuar Con La Compra.
                                 </Link>
                             </article>
                         </aside>

@@ -1,17 +1,26 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 //import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import ShopFilter from './ShopFilter';
-import ShopProducts from '../products/ShopProducts';
+import { Link, useParams } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import 'flowbite';
+//////////////////////////////////////////////////////////////////////////////////
+import Price from './Price';
 import Search from './Search';
 import Empty from './Empty';
-import { faBagShopping } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
-import 'flowbite';
-import { api } from '../../api/product/shopApi';
+//////////////////////////////////////////////////////////////////////////////////
+import ShopProducts from '../products/ShopProducts';
+//////////////////////////////////////////////////////////////////////////////////
+import Category from './Category';
+//////////////////////////////////////////////////////////////////////////////////
+import { productApi } from '../../api/product/productApi';
+import { categoryApi } from '../../api/category/categoryApi';
+import { subcategoryApi } from '../../api/subcategory/subcategoryApi';
+import { tripletecategoryApi } from '../../api/tripletecategory/tripletecategoryApi';
+//////////////////////////////////////////////////////////////////////////////////
 
 const ShopMainPart = () => {
+    const { id } = useParams();
 
     const [products, setProducts] = useState([]); //default is empty, no Products
     const [category, setCategory] = useState([]); //default is empty, no Category
@@ -23,13 +32,12 @@ const ShopMainPart = () => {
 
     const [inputSearch, setInputSearch] = useState(''); //for search is empty default
     const [resultsFound, setResultsFound] = useState(true);
-    const [selectedCategory, setSelectedCategory] = useState();
+    const [selectedCategory, setselectedCategory] = useState();
     const [selectedSubcategory, setselectedSubcategory] = useState();
     const [selectedTripletecategory, setselectedTripletecategory] = useState();
 
-    //value when i click on button -> catItem
     const filterResult = (catItem) => {
-        setSelectedCategory(catItem);
+        setselectedCategory(catItem);
     }
 
     const filterResult2 = (catItem) => {
@@ -50,7 +58,7 @@ const ShopMainPart = () => {
         const applyFilters = () => {
             let updateProductList = products;
 
-            //Category Filters
+            // SubCategory Filters
             if (selectedCategory) {
                 updateProductList = updateProductList.filter((item) => item.categoryOptions === selectedCategory);
             }
@@ -86,7 +94,7 @@ const ShopMainPart = () => {
     useEffect(() => {
         //fetch all products from db
         const fetchData = async () => {
-            const resultProducts = await api.get('/api/products/all');
+            const resultProducts = await productApi.get('/all');
 
             const resultProductsData = resultProducts.data;
 
@@ -97,17 +105,17 @@ const ShopMainPart = () => {
             setProducts(sortResultProductsData);
 
             //fetch all category
-            const resultCategory = await api.get('/api/category/all');
+            const resultCategory = await categoryApi.get('/all');
             console.log(resultCategory.data);
             setCategory(resultCategory.data);
 
             //fetch all subcategory
-            const resultSubcategory = await api.get('/api/subcategory/all');
+            const resultSubcategory = await subcategoryApi.get('/all');
             console.log(resultSubcategory.data);
             setSubcategory(resultSubcategory.data);
 
             //fetch all Tripletecategory
-            const resultTripletecategory = await api.get('/api/tripletecategory/all');
+            const resultTripletecategory = await tripletecategoryApi.get('/all');
             console.log(resultTripletecategory.data);
             setTripletecategory(resultTripletecategory.data);
         }
@@ -127,7 +135,7 @@ const ShopMainPart = () => {
                         <div className="col-6">
                             <div className="page-title-wrap">
                                 <h1>
-                                    <FontAwesomeIcon icon={faBagShopping} />  PRODUCTOS.
+                                    <FontAwesomeIcon icon="fa-solid fa-filter" /> Filtrar Por.
                                 </h1>
                             </div>
                         </div>
@@ -137,14 +145,14 @@ const ShopMainPart = () => {
                             <nav className="page-breadcrumb-wrap">
                                 <ul className="nav justify-content-end">
                                     <li>
-                                        <a href="/" rel="noopener noreferrer">
+                                        <Link to="/" rel="noopener noreferrer">
                                             INICIO.
-                                        </a>
+                                        </Link>
                                     </li>
                                     <li>
-                                        <a href="/shop" className="current" rel="noopener noreferrer">
-                                            <FontAwesomeIcon icon={faBagShopping} />  PRODUCTOS.
-                                        </a>
+                                        <Link to="/shop" className="current" rel="noopener noreferrer">
+                                            <FontAwesomeIcon icon="fa-solid fa-filter" /> Filtrar Por.
+                                        </Link>
                                     </li>
                                 </ul>
                             </nav>
@@ -154,34 +162,92 @@ const ShopMainPart = () => {
                 </div>
             </div>
             {/*== End Page Header ==*/}
-            <div id="cart-page-wrapper">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-lg-12">
-                            <div className='f-group'>
-                                <span className="f-groupTitle">B&#250;scar. :*</span>
-                                <Search value={inputSearch} changeInput={(e) => setInputSearch(e.target.value)} />
+            <section className="py-12">
+                <div className="container max-w-screen-xl mx-auto px-4">
+                    <div className="flex flex-col md:flex-row -mx-4">
+                        <aside className="md:w-1/3 lg:w-1/4 px-4">
+                            <a
+                                className="mb-5 w-full text-center px-4 py-2 inline-block text-lg text-gray-700 bg-white shadow-sm border border-gray-200 rounded-md hover:bg-gray-100 hover:text-blue-600"
+                                rel="noopener noreferrer" style={{ fontSize: "15px" }}
+                            >
+                                <span className="f-groupTitle badge badge-primary text-black" style={{ fontSize: "15px" }}>
+                                    <FontAwesomeIcon icon="fa-solid fa-sliders" /> Filtrar Por. :*
+                                </span>
+                            </a>
+                            <div className="md:block px-6 py-4 border border-gray-200 bg-white rounded shadow-sm">
+                                <h3 className="font-semibold mb-2">
+                                    <span className="f-groupTitle badge badge-primary text-black" style={{ fontSize: "15px" }}>
+                                        <FontAwesomeIcon icon="fa-solid fa-magnifying-glass-plus" /> B&#250;scar. :*
+                                    </span>
+                                </h3>
+                                <div className="grid md:grid-cols-1 gap-x-2">
+                                    <div className="mb-4">
+                                        <Search value={inputSearch} changeInput={(e) => setInputSearch(e.target.value)} />
+                                    </div>
+                                </div>
                             </div>
-                            <div className='f-group'>
-                                <ShopFilter filterResult={filterResult} filterResult2={filterResult2} filterResult3={filterResult3} category={category} subcategory={subcategory} tripletecategory={tripletecategory} selectedPrice={selectedPrice} changePrice={handleChangePrice} />
+                            <div className="md:block px-6 py-4 border border-gray-200 bg-white rounded shadow-sm">
+                                <h3 className="font-semibold mb-2">
+                                    <span className="f-groupTitle badge badge-success text-black" style={{ fontSize: "15px" }}>
+                                        &#36; Precio. :*
+                                    </span>
+                                </h3>
+                                <div className="grid md:grid-cols-1 gap-x-2">
+                                    <div className="mb-4">
+                                        <Price style={{ width: "90%" }} value={selectedPrice} changePrice={handleChangePrice} />
+                                    </div>
+                                </div>
                             </div>
-                            {/* Cart Table Area */}
-                        </div>
+
+                            <div className="md:block px-6 py-4 border border-gray-200 bg-white rounded shadow-sm">
+
+                                <h3 className="font-semibold mb-2">
+                                    <p style={{ fontSize: "15px" }}>
+                                        <code className='hidden'>{id}</code>
+                                    </p>
+                                </h3>
+
+                                <hr className="my-4" />
+
+                                <ul className="space-y-1">
+                                    <li>
+                                        <label className="flex items-center">
+                                            <Category category={category} filterResult={filterResult} subcategory={subcategory} filterResult2={filterResult2} tripletecategory={tripletecategory} filterResult3={filterResult3} key={id} />
+                                        </label>
+                                    </li>
+                                </ul>
+
+                                <hr className="my-4" />
+
+                                <h3 className="font-semibold mb-2">
+                                    <span className="f-groupTitle badge badge-primary text-black" style={{ fontSize: "15px" }}>
+                                        <FontAwesomeIcon icon="fa-solid fa-repeat" /> Acc&#237;on. :*
+                                    </span>
+                                </h3>
+
+                                <ul className="space-y-1">
+                                    <li>
+                                        <label className="flex items-center">
+                                            <a href="/shop" rel="noopener noreferrer" className="f-groupTitle">
+                                                <code className='badge rounded-pill badge-dark f-groupTitle' style={{ fontSize: "15px" }}>
+                                                    <FontAwesomeIcon icon="fa-solid fa-repeat" /> Cargar La P&#225;gina. <span className="fas fa-chevron-right ms-1 fs--2" style={{ fontSize: "15px" }} />
+                                                </code>
+                                            </a>
+                                        </label>
+                                    </li>
+                                </ul>
+                            </div>
+                        </aside>
+                        <main className="md:w-2/3 lg:w-3/4 px-3">
+                            <article className="border border-gray-200 overflow-hidden bg-white shadow-sm rounded mb-5">
+                                <div className="flex flex-col md:flex-row">
+                                    {resultsFound ? (<ShopProducts list={list} />) : (<Empty />)}
+                                </div>
+                            </article>
+                        </main>
                     </div>
                 </div>
-            </div>
-            <div id="cart-page-wrapper" className="page-padding">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-lg-12 mb-2">
-                            <div className='card card-ecommerce'>
-                                {resultsFound ? (<ShopProducts list={list} />) : (<Empty />)}
-                            </div>
-                            {/* Cart Table Area */}
-                        </div>
-                    </div>
-                </div>
-            </div>
+            </section>
         </>
     );
 };

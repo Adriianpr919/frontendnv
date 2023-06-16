@@ -4,7 +4,6 @@ import { Store } from '../../utils/Store';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBagShopping } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
-
 import 'flowbite';
 
 const WishList = () => {
@@ -41,19 +40,19 @@ const WishList = () => {
               <nav className="page-breadcrumb-wrap">
                 <ul className="nav justify-content-end">
                   <li>
-                    <a href="/" rel="noopener noreferrer">
+                    <Link to="/" rel="noopener noreferrer">
                       INICIO.
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a href="/shop" rel="noopener noreferrer">
+                    <Link to="/shop" rel="noopener noreferrer">
                       <FontAwesomeIcon icon={faBagShopping} />  PRODUCTOS.
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a href="/wish" className="current" rel="noopener noreferrer">
+                    <Link to="/wish" className="current" rel="noopener noreferrer">
                       <i className="fa-solid fa-heart"></i> LISTA DE DESEOS.
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </nav>
@@ -73,9 +72,8 @@ const WishList = () => {
                     <tr>
                       <th className="pro-thumbnail">IMAGEN. :*</th>
                       <th className="pro-title">NOMBRE. :*</th>
-                      <th className="pro-price">MEN&#218; 1 CATEGOR&#205;A. :*</th>
-                      <th className="pro-quantity">MEN&#218; 2 CATEGOR&#205;A. :*</th>
-                      <th className="pro-quantity">MEN&#218; 3 CATEGOR&#205;A. :*</th>
+                      <th className="pro-price">CATEGOR&#205;AS. :*</th>
+                      <th className="pro-price">CANTIDAD. :*</th>
                       <th className="pro-subtotal">PRECIO. :*</th>
                       <th className="pro-remove">ACCI&#211;N. :*</th>
                     </tr>
@@ -103,23 +101,32 @@ const WishList = () => {
                                   </Link>
                                 </td>
                                 <td className="pro-title">
-                                  <span className='badge badge-info mb-2 text-black' style={{ fontSize: "15px" }}>
+                                  <span className='badge badge-secondary mb-2 text-black' style={{ fontSize: "15px" }}>
                                     {item.title}
                                   </span>
                                 </td>
                                 <td className="pro-title">
-                                  <span className='badge badge-danger mb-2 text-black' style={{ fontSize: "15px" }}>
-                                    {item.categoryOptions}
-                                  </span>
+                                  <div class="pl-3">
+                                    <div class="text-base font-semibold">
+                                      <span style={{ color: "black", fontSize: "15px" }} className="badge badge-secondary mb-2">
+                                        {item.categoryOptions}
+                                      </span>
+                                    </div>
+                                    <div class="font-normal text-gray-500">
+                                      <span style={{ color: "black", fontSize: "15px" }} className="badge badge-secondary mb-2">
+                                        {item.subcategoryOptions}
+                                      </span>
+                                    </div>
+                                    <div class="font-normal text-gray-500">
+                                      <span style={{ color: "black", fontSize: "15px" }} className="badge badge-secondary mb-2">
+                                        {item.tripletecategoryOptions}
+                                      </span>
+                                    </div>
+                                  </div>
                                 </td>
-                                <td className="pro-title">
-                                  <span className='badge badge-danger mb-2 text-black' style={{ fontSize: "15px" }}>
-                                    {item.subcategoryOptions}
-                                  </span>
-                                </td>
-                                <td className="pro-title">
-                                  <span className='badge badge-danger mb-2 text-black' style={{ fontSize: "15px" }}>
-                                    {item.tripletecategoryOptions}
+                                <td className="pro-price">
+                                  <span className='badge badge-info mb-2 text-black' style={{ fontSize: "15px" }}>
+                                    {item.countInStock > 0 ? 'EN STOCK.' : 'AGOTADO.'}
                                   </span>
                                 </td>
                                 <td className="pro-price">
@@ -135,8 +142,8 @@ const WishList = () => {
                                   </span>
                                 </td>
                                 <td className="pro-remove">
-                                  <button className='w-btnTrash' onClick={() => removeItemHandler(item)}>
-                                    <span style={{ color: "red", fontSize: "20px" }} alt='Eliminar.' title='Eliminar.' className='w-trash badge badge-danger mb-2'>
+                                  <button className='text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2' onClick={() => removeItemHandler(item)}>
+                                    <span style={{ fontSize: "20px" }} alt='Eliminar.' title='Eliminar.'>
                                       <i className="fa-solid fa-trash"></i>
                                     </span>
                                   </button>

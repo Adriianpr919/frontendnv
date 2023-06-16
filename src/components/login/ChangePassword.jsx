@@ -1,8 +1,9 @@
-import axios from 'axios';
+//import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import bcrypt from 'bcryptjs';
+import { userApi } from '../../api/login/userApi';
 
 const ChangePassword = () => {
 
@@ -34,7 +35,7 @@ const ChangePassword = () => {
             if (newPassword === rNewPassword) {
                 try {
 
-                    const { data } = await axios.put('/api/users/update', {
+                    const { data } = await userApi.put('/update', {
                         _id: userInfo._id,
                         newPassword
                     });

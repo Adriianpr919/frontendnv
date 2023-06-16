@@ -3,10 +3,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 //import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import '../../style/index.css';
-
 import 'flowbite';
-import { api } from '../../api/blog/blogApi';
+import { blogApi } from '../../api/blog/blogApi';
 
 const HomeBlog = () => {
 
@@ -15,7 +13,7 @@ const HomeBlog = () => {
     useEffect(() => {
 
         const fetchData = async () => {
-            const resultBlog = await api.get('/api/blogs/all');
+            const resultBlog = await blogApi.get('/all');
             console.log(resultBlog.data);
             setBlogs(resultBlog.data);
         }
@@ -39,9 +37,9 @@ const HomeBlog = () => {
                                     ¿Quieres presentar las publicaciones de la mejor manera para resaltar los momentos interesantes de tu blog? ¡Enf&#243;cate en las &#250;ltimas noticias!
                                 </p>
                                 <div className="hb-col" style={{ marginTop: '20px' }}>
-                                    <Link to='/blogs' rel='noopener noreferrer' className='hb-more badge badge-secondary mb-2 text-center' style={{ fontSize: "20px" }}>
+                                    <a href="/blogs" rel='noopener noreferrer' className='text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 shadow-lg shadow-cyan-500/50 dark:shadow-lg dark:shadow-cyan-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2' style={{ fontSize: "20px" }}>
                                         Ver M&#225;s. <FontAwesomeIcon icon={faEye} />
-                                    </Link>
+                                    </a>
                                 </div>
                             </div>
                         </div>

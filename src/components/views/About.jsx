@@ -1,10 +1,10 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 //import axios from 'axios';
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
 import 'flowbite';
-import { api } from '../../api/about/aboutApi';
+import { aboutApi } from '../../api/about/aboutApi';
 
 const About = () => {
 
@@ -13,7 +13,7 @@ const About = () => {
   useEffect(() => {
 
     const fetchData = async () => {
-      const resultAbout = await api.get('/api/abouts/all');
+      const resultAbout = await aboutApi.get('/all');
       console.log(resultAbout.data);
       setAbouts(resultAbout.data);
     }
@@ -43,14 +43,14 @@ const About = () => {
               <nav className="page-breadcrumb-wrap">
                 <ul className="nav justify-content-end">
                   <li>
-                    <a href="/" rel="noopener noreferrer">
+                    <Link to="/" rel="noopener noreferrer">
                       INICIO.
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a href="#!" className="current" rel="noopener noreferrer">
+                    <Link to="#!" className="current" rel="noopener noreferrer">
                       <FontAwesomeIcon icon="fa-solid fa-gear" /> QUI&#201;NES SOMOS. :*
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </nav>
@@ -71,7 +71,7 @@ const About = () => {
                   {
                     abouts.length === 0 ? (
                       <div className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
-                        <span class="font-medium no-data" style={{ fontSize: "15px" }}>
+                        <span className="font-medium no-data" style={{ fontSize: "15px" }}>
                           ¡.Actualmente NO Hay Acerca De.!
                         </span>
                       </div>

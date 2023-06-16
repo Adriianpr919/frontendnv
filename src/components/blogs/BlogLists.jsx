@@ -4,10 +4,8 @@ import ReactPaginate from 'react-paginate';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInfoCircle, faEye } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
-import '../../style/index.css';
-
 import 'flowbite';
-import { api } from '../../api/blog/blogApi';
+import { blogApi } from '../../api/blog/blogApi';
 
 const BlogLists = () => {
 
@@ -27,7 +25,7 @@ const BlogLists = () => {
     useEffect(() => {
 
         const fetchData = async () => {
-            const resultBlog = await api.get('/api/blogs/all');
+            const resultBlog = await blogApi.get('/all');
             // i want the latest blogs to show
 
             const resultBlogData = resultBlog.data;
@@ -70,14 +68,14 @@ const BlogLists = () => {
                                 <nav className="page-breadcrumb-wrap">
                                     <ul className="nav justify-content-end">
                                         <li>
-                                            <a href="/" rel="noopener noreferrer">
+                                            <Link to="/" rel="noopener noreferrer">
                                                 INICIO.
-                                            </a>
+                                            </Link>
                                         </li>
                                         <li>
-                                            <a href="/blogs" className="current" rel="noopener noreferrer">
+                                            <Link to="/blogs" className="current" rel="noopener noreferrer">
                                                 <FontAwesomeIcon icon={faInfoCircle} />  BLOG.
-                                            </a>
+                                            </Link>
                                         </li>
                                     </ul>
                                 </nav>

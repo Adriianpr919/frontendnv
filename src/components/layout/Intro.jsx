@@ -17,9 +17,8 @@ import Carousel from 'react-bootstrap/Carousel';
 ///////////////////////////////////////////////////////////////////////////////////////////////
 import '../../style/BannerSlider.css';
 ///////////////////////////////////////////////////////////////////////////////////////////////
-
 import 'flowbite';
-import { api } from '../../api/banner/bannerApi';
+import { bannerApi } from '../../api/banner/bannerApi';
 
 const Intro = () => {
 
@@ -35,7 +34,7 @@ const Intro = () => {
   useEffect(() => {
 
     const fetchData = async () => {
-      const resultBanner = await api.get('/api/banners/all');
+      const resultBanner = await bannerApi.get('/all');
       console.log(resultBanner.data);
       setBanners(resultBanner.data);
     }
@@ -129,7 +128,7 @@ const Intro = () => {
                         rel="noopener noreferrer"
                         className="btn btn-secondary btn-lg m-2"
                         role="button">
-                        Compra Ahora.
+                        Ver Tienda.
                       </Link>
                       <a
                         href="#blog"

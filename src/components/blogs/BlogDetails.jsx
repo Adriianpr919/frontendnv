@@ -1,12 +1,11 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 //import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
-
 import 'flowbite';
-import { api } from '../../api/blog/blogApi';
+import { blogApi } from '../../api/blog/blogApi';
 
 const BlogDetails = () => {
 
@@ -21,7 +20,7 @@ const BlogDetails = () => {
     useEffect(() => {
 
         const fetchData = async () => {
-            const resultBlog = await api.get(`/api/blogs/find/${id}`);
+            const resultBlog = await blogApi.get(`/find/${id}`);
             console.log(resultBlog.data);
             setBlog(resultBlog.data);
         }
@@ -57,14 +56,14 @@ const BlogDetails = () => {
                             <nav className="page-breadcrumb-wrap">
                                 <ul className="nav justify-content-end">
                                     <li>
-                                        <a href="/" rel="noopener noreferrer">
+                                        <Link to="/" rel="noopener noreferrer">
                                             INICIO.
-                                        </a>
+                                        </Link>
                                     </li>
                                     <li>
-                                        <a href="/blogs" className="current" rel="noopener noreferrer">
+                                        <Link to="/blogs" className="current" rel="noopener noreferrer">
                                             <FontAwesomeIcon icon={faInfoCircle} />  BLOG.
-                                        </a>
+                                        </Link>
                                     </li>
                                 </ul>
                             </nav>
